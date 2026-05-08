@@ -490,14 +490,11 @@ cursor: pointer;
 }
 
 #description-long {
-  /* Start with a small height or 0 if you want it hidden initially */
   max-height: 0;
   opacity: 0;
   
-  /* The transition handles the smooth resize and fade */
   transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
   
-  /* Ensure overflow is hidden so content doesn't spill out before expansion */
   overflow: hidden;
 }
 
@@ -510,9 +507,7 @@ cursor: pointer;
   margin-top: 25px;
 }
 
-/* This class will be added by JS to trigger the expansion */
 #description-long.expanded {
-  /* A large enough value to fit the content, or 'fit-content' if supported */
   max-height: 3000px; 
   opacity: 1;
 }
@@ -634,6 +629,10 @@ cursor: pointer;
   transform: translateY(0);
 }
 
+  .single-product{
+    margin-top:60px;
+  }
+
 .single-product #qty button{
   display: inline-block;
   height: 50px;
@@ -671,8 +670,8 @@ cursor: pointer;
 }
 
 #scrollTopBtn:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-  transform: translateY(-3px); /* Slight lift effect */
+  background-color: #0056b3;
+  transform: translateY(-3px);
   font-weight: bold;
 }
 
@@ -741,8 +740,6 @@ cursor: pointer;
     transition: all .3s;
 }
 
-/*AUTOR*/
-
 .author-section {
   padding: 80px 0;
   min-height: 80vh;
@@ -751,116 +748,15 @@ cursor: pointer;
   margin-top: 60px;
 }
 
-        .author-card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
+.author-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
 
-        @media (min-width: 992px) {
-            .author-card {
-                flex-direction: row;
-            }
-        }
-
-        .author-image {
-            flex: 1;
-            background-color: #e9ecef;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 400px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .author-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .author-card:hover .author-image img {
-            transform: scale(1.05);
-        }
-
-        .author-content {
-            flex: 1;
-            padding: 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .author-name {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            line-height: 1.2;
-        }
-
-        .author-role {
-            color: var(--secondary-color);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
-            font-size: 0.9rem;
-        }
-
-        .author-bio {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        .author-info {
-            display: flex;
-            gap: 30px;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            padding: 20px 0;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: #888;
-            text-transform: uppercase;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .author-name {
-                font-size: 2rem;
-            }
-            
-            .author-content {
-                padding: 30px;
-            }
-            
-            .author-stats {
-                gap: 20px;
-            }
-        }
-
-/*FUTER*/
 
 footer {
   margin-top: 50px !important;
