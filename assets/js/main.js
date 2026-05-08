@@ -52,10 +52,10 @@ window.onload = function(){
                 <p>Support : +381 61 4060330</p>
             </div>
             <div class="footer-col">
-                <h4>Quick Links</h4>
-                <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
-                <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+                <h4>Find us at</h4>
+                <a href="https://web.telegram.org/k/"><i class="fab fa-telegram"></i> Telegram</a>
+                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i> Facebook</a>
             </div>
             <div class="footer-col">
                 <h4>Resources</h4>
