@@ -243,8 +243,41 @@ window.onload = function(){
             }
         },
 
-        error: function (xhr) {
-            console.log(xhr);
+        error: function (xhr, status, error) {
+            let errorMessage = "An unexpected error occurred.";
+            let statusCode = xhr.status;
+            switch (statusCode) {
+                case 0:
+                    errorMessage = "Network error: Unable to reach the server. Please check your internet connection.";
+                    break;
+                case 400:
+                    errorMessage = `Bad Request (400): The server rejected the request. Check the URL or parameters.`;
+                    break;
+                case 401:
+                    errorMessage = `Unauthorized (401): You are not logged in or the session has expired.`;
+                    break;
+                case 403:
+                    errorMessage = `Forbidden (403): You do not have permission to access this resource.`;
+                    break;
+                case 404:
+                    errorMessage = `Not Found (404): The requested resource at "${url}" could not be found.`;
+                    break;
+                case 500:
+                    errorMessage = `Internal Server Error (500): The server encountered an unexpected condition.`;
+                    break;
+                case 502:
+                    errorMessage = `Bad Gateway (502): The server received an invalid response from an upstream server.`;
+                    break;
+                case 503:
+                    errorMessage = `Service Unavailable (503): The server is currently unable to handle the request (maintenance?).`;
+                    break;
+                default:
+                    errorMessage = `Error (Status ${statusCode}): ${xhr.statusText || "Unknown error"}.`;
+                    break;
+            }
+
+            console.error(errorMessage);
+            console.error("Full error details:", xhr);
         }
     });}
 
