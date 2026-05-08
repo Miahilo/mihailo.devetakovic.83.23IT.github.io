@@ -1,6 +1,5 @@
 window.onload = function(){
-    
-    console.log(window.location.pathname);
+
     function generateHeader(){
         let header = `
         
@@ -38,7 +37,7 @@ window.onload = function(){
         document.getElementsByTagName("header")[0].innerHTML = header;
     }
 
-    generateHeader();console.log("Heder");
+    generateHeader();
 
     function generateFooter(){
         let footer = `
@@ -70,10 +69,9 @@ window.onload = function(){
         document.getElementsByTagName("footer")[0].innerHTML = footer;
     }
 
-    generateFooter();console.log("Footer");
+    generateFooter();
 
 
-    // Menu Dropdown Toggle
 	if($('.menu-trigger').length){
 		$(".menu-trigger").on('click', function() {	
 			$(this).toggleClass('active');
@@ -93,24 +91,18 @@ window.onload = function(){
     $(window).on('resize', function() {
         const currentWidth = $(window).width();
         
-        // Only run logic if we actually crossed the 767px threshold
         if ((previousWidth <= 767 && currentWidth > 767) || 
             (previousWidth > 767 && currentWidth <= 767)) {
-            
-            console.log("AA");
-            
             if ($('.menu-trigger').hasClass('active')) {
                 $('.menu-trigger').removeClass('active');
                 $('.header-area .nav').css('display', '').removeClass('slideToggle');
             }
         }
         
-        // Update the previous width for the next event
         previousWidth = currentWidth;
     });
     
 
-    // Menu elevator animation
     $('.scroll-to-section a[href*=\\#]:not([href=\\#])').on('click', function() {
 		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
 			var target = $(this.hash);
@@ -129,28 +121,23 @@ window.onload = function(){
 		}
 	});
 
-    generateHeader(); console.log("Header");
+    generateHeader();
 
-    //TOAST
     function showToast(message, type = 'success') {
         const container = document.getElementById('toast-container');
         const toast = document.createElement('div');
         
-        // Set class based on type (success or error)
         toast.className = `toast ${type}`;
         toast.innerText = message;
         
         container.appendChild(toast);
 
-        // Trigger animation (small delay to allow DOM insertion)
         setTimeout(() => {
             toast.classList.add('show');
         }, 10);
 
-        // Remove after 3 seconds
         setTimeout(() => {
             toast.classList.remove('show');
-            // Remove from DOM after transition finishes
             setTimeout(() => {
                 if (container.contains(toast)) {
                     container.removeChild(toast);
@@ -159,10 +146,8 @@ window.onload = function(){
         }, 800);
     }
 
-    //SCROLL TO TOP
     const scrollBtn = document.getElementById("scrollTopBtn");
 
-        // When the user scrolls down 20px from the top, show the button
         window.onscroll = function() {
             scrollFunction();
         };
@@ -175,32 +160,25 @@ window.onload = function(){
             }
         }
 
-        // When the user clicks on the button, scroll to the top of the document
         scrollBtn.addEventListener("click", function() {
             window.scrollTo({
                 top: 0,
-                behavior: "smooth" // Smooth scrolling animation
+                behavior: "smooth"
             });
         });
 
-    //TIMER
-
     (function() {
-  // 1. Set the target date: June 15, 2026 at 00:00:00
   const TARGET_DATE = new Date('2026-06-15T00:00:00').getTime();
   const STORAGE_KEY = 'countdown_last_seen';
 
-  // 2. Function to calculate the remaining time
   function getCountdown() {
     const now = new Date().getTime();
     let distance = TARGET_DATE - now;
 
-    // If the date has passed, return 0
     if (distance < 0) {
       distance = 0;
     }
 
-    // Time calculations
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -209,15 +187,10 @@ window.onload = function(){
     return { days, hours, minutes, seconds, distance };
   }
 
-  // 3. Function to update the DOM
   function updateDisplay() {
     const timerData = getCountdown();
     
-    // Format the string
     const timeString = `${timerData.days}d ${timerData.hours}h ${timerData.minutes}m ${timerData.seconds}s`;
-
-    // Select the target element
-    // Note: CSS selector for :nth-child(2) requires specific syntax
     const targetElement = document.querySelector('.trending .container .row div:nth-child(2) .main-button span');
 
     if (targetElement) {
@@ -226,31 +199,17 @@ window.onload = function(){
       console.warn('Target element .trending .container .row div:nth-child(2) not found.');
     }
 
-    // Stop updating if the countdown is over
     if (timerData.distance <= 0) {
       clearInterval(intervalId);
       if (targetElement) targetElement.innerText = "Event Started";
     }
   }
-
-  // 4. Start the timer
-  // Update immediately, then every second
   updateDisplay();
   const intervalId = setInterval(updateDisplay, 1000);
-
-  // Optional: To ensure perfect sync across tabs or refreshes, 
-  // we could store the target date and reload time in localStorage, 
-  // but since the target date is fixed (2026-06-15), calculating 
-  // based on the user's current system time is sufficient and accurate.
 })();
-
-    //Dohvatanje priozvoda
     ajaxCallBack('assets/js/json/games.json' ,`get` ,function result(){
-        console.log("Rezultat : " + result);
         setItemToLocalStorage(result);
     })
-
-    //Skladištenje podataka
     function setItemToLocalStorage(name,data){
         localStorage.setItem(name,JSON.stringify(data));
     }
@@ -278,10 +237,8 @@ window.onload = function(){
             else if(window.location.pathname.includes("/product-details.html")){
                 ajustCartContence();
                 selectedId = getItemFromLocalStorage("selectedGame");
-                console.log("selectedId : ",selectedId);
                 selectedGame = allGames.find(game => game.id == selectedId);
                 findAndRenderSimilarGames(selectedGame);
-                console.log("selectedGame : ",selectedGame);
                 makeProductInfo(selectedGame);
             }
         },
@@ -291,18 +248,11 @@ window.onload = function(){
         }
     });}
 
-    //Pretraga
-
     const searchInput = document.querySelector('.search');
     const resultsContainer = document.querySelector('.results-container');
-
-    // Function to render games to the screen
-
-        // 3. EVENT LISTENER
-        // Using 'input' instead of 'keypress' is better as it handles backspace and pasting
         if(window.location.pathname.includes("/index.html") || window.location.pathname.includes("/shop.html")){
             function renderGames(games) {
-            resultsContainer.innerHTML = ''; // Clear previous results
+            resultsContainer.innerHTML = '';
 
             games.forEach(game => {
                 const card = document.createElement('div');
@@ -319,13 +269,10 @@ window.onload = function(){
             const lowerQuery = query.toLowerCase().trim();
             
             if (!lowerQuery) {
-                // If empty, show all games (optional) or hide all
                 return []; 
             }
 
             return allGames.filter(game => {
-                // Check if the game name includes the query string
-                // "in order that they are typed" means we check for the substring
                 return game.name.toLowerCase().includes(lowerQuery);
             });
         }
@@ -345,16 +292,15 @@ window.onload = function(){
         }
 
     function showCards(cards){
-        console.log("Ulazi u showCards");
         randomGames = [];
         numberOfRandomGames = 6;
         
         for(let x=0;x < numberOfRandomGames;x++){
             randGame = Math.floor(Math.random() * cards.length);
-            if(!randomGames.includes(allGames[randGame])){//console.log("Prošlo kroz dodavanje randGame");
+            if(!randomGames.includes(allGames[randGame])){
                 randomGames[x] = allGames[randGame];
             }else{
-                x--;//console.log("Duplikat");
+                x--;
             }
         }
         for(let x of randomGames){
@@ -384,8 +330,6 @@ window.onload = function(){
         destination.innerHTML += html;
 
     }
-
-    //Odabir 4 Igre sa najvećim Popustom
     function largestDiscounts(games,numberofgames){
         var topDiscounted = [];
         topDiscounted = games.sort(function(a,b){
@@ -396,7 +340,6 @@ window.onload = function(){
             createDiscountCard(x,this.document.querySelector(".trending .container .row"))
         }
     }
-    //Prikaz 4 Igre sa najvećim Popustom
     function createDiscountCard(game,destination){
         let html = `
         
@@ -414,7 +357,6 @@ window.onload = function(){
         `;
         destination.innerHTML += html;
     }
-    //Funkcija za izračunavanje cene sa popustom
 
     function finalPrice(game){
         if(game.discount > 0){
@@ -439,8 +381,6 @@ window.onload = function(){
         }
         return html;
     }
-    
-        //RAD SA ŽANROVINA
     let selectedGenres = [];
 
     let currentPage = 1;
@@ -462,13 +402,11 @@ window.onload = function(){
             $(this).next().removeClass("checked");
         }
         
-        console.log("Selected Genres : "+ selectedGenres);
-        
         currentPage = 1;
         ajustShownGames();
     })
 
-    $("#priceFiltering").on("change",function(){console.log("Ulazi u priceFiltering")
+    $("#priceFiltering").on("change",function(){
         currentPage = 1;
         ajustShownGames();
     })
@@ -477,19 +415,14 @@ window.onload = function(){
         currentPage = parseInt($(this).data("page"));
         ajustShownGames();
     });
-
-    //Prikaz Igara
     function ajustShownGames(){
 
     let filteredGames = [];
-
-    // --- STEP A: Filter ---
     if (selectedGenres.length === 0) {
         filteredGames = allGames;
     } else {
         filteredGames = allGames.filter(game => {
             var gameGenres = Array.isArray(game.genre) ? game.genre : [];
-            // Check if game has ANY of the selected genres
             return selectedGenres.every(selectedGenre => gameGenres.includes(selectedGenre));
         });
     }
@@ -503,26 +436,21 @@ window.onload = function(){
         $("#pagination-container").empty();
         return;
     }
-
-    // --- STEP B: Sort ---
-    const sortValue = $('#priceFiltering').val(); // Get current selection
+    const sortValue = $('#priceFiltering').val();
 
     if (sortValue) {
         filteredGames.sort((a, b) => {
             switch (sortValue) {
                 case 'priceAscending':
-                    // Assuming price is a number. If string, use parseFloat(a.price)
                     return getFinalPrice(a) - getFinalPrice(b);
                 
                 case 'priceDescending':
                     return getFinalPrice(b) - getFinalPrice(a) ;
                 
                 case 'nameAscending':
-                    // Sort A-Z
                     return (a.name || "").localeCompare(b.name || "");
                 
                 case 'nameDescending':
-                    // Sort Z-A
                     return (b.name || "").localeCompare(a.name || "");
                 
                 default:
@@ -531,11 +459,7 @@ window.onload = function(){
         });
     }
 
-    // --- STEP C: Pagination  ---
-
     var totalPages = Math.ceil(filteredGames.length / itemsPerPage);
-    
-    // Ensure current page doesn't exceed total pages if items were removed
     if (currentPage > totalPages && totalPages > 0) {
         currentPage = totalPages;
     }
@@ -550,27 +474,21 @@ window.onload = function(){
 
     }
 
-    function renderPagination(totalPages) {console.log("Ulazi u renderPagination");
+    function renderPagination(totalPages) {
     var $paginationContainer = $("#pagination-container");
     $paginationContainer.empty();
 
     if (totalPages <= 1) {
-        // No buttons needed if 0 or 1 page
         return;
     }
 
-    // Previous Button
     if (currentPage > 1) {
         $paginationContainer.append(`<button class="page-btn" data-page="${currentPage - 1}">Prev</button>`);
     }
-
-    // Page Numbers
     for (let i = 1; i <= totalPages; i++) {
         var isActive = i === currentPage ? "active" : "";
         $paginationContainer.append(`<button class="page-btn ${isActive}" data-page="${i}">${i}</button>`);
     }
-
-    // Next Button
     if (currentPage < totalPages) {
         $paginationContainer.append(`<button class="page-btn" data-page="${currentPage + 1}">Next</button>`);
     }
@@ -584,9 +502,6 @@ window.onload = function(){
         }
         return basePrice;
     }
-    console.log("Radiš li?");
-
-    //Ispis Igara prodavnice
     function createShopCards(games){
         var shopCard = "";
         for(let game of games){
@@ -618,10 +533,6 @@ window.onload = function(){
     function getItemFromLocalStorage(key) {
     let data = localStorage.getItem(key);
     if (!data) return null;
-    
-    // CRITICAL: Ensure we parse it. 
-    // If data is already an object (unlikely from LS), return it.
-    // If it's a string, parse it.
     try {
         return JSON.parse(data);
     } catch (e) {
@@ -629,10 +540,9 @@ window.onload = function(){
         return null;
     }
 }
-    //Rad sa Korpom
     function addToCart(){
 
-        let thisGameId = $(this).data("gameid");console.log("This Game id : "+thisGameId);
+        let thisGameId = $(this).data("gameid");
 
         let gamesFromCart = getItemFromLocalStorage("gamesInCart");
 
@@ -675,14 +585,14 @@ window.onload = function(){
                         x.quantity++;
                         showToast("Game added to cart!","success");
                     }
-                }console.log("Količina : "+x.quantity)
+                }
             }
 
             localStorage.setItem("gamesInCart",JSON.stringify(gamesInCart));
         }
 
         function addGameToCart(){
-            let gamesInCart = getItemFromLocalStorage("gamesInCart");console.log("gamesInCart : "+gamesInCart)
+            let gamesInCart = getItemFromLocalStorage("gamesInCart");
 
             gamesInCart.push({id : thisGameId , quantity : 1});
 
@@ -711,7 +621,7 @@ window.onload = function(){
             return numberOfGames;
         }
 
-        function ajustCartContence(){console.log("Ulazi u ajustCartInterior");
+        function ajustCartContence(){
             let gamesFromCart = getItemFromLocalStorage("gamesInCart");
             if(gamesFromCart.length){
                 document.querySelector(".cart").innerHTML = (`Cart (${numberOfGamesInCart()})`);
@@ -736,8 +646,6 @@ window.onload = function(){
                 }
             }
 
-            console.log("gamesForPrint : "+gamesForPrint);
-
             var cartCardContainer = document.querySelector("#gamesInCart");
             
             cartCardContainer.innerHTML = "";
@@ -748,9 +656,6 @@ window.onload = function(){
             }
             else{
                 for(let y of gamesForPrint){
-                    // console.log("Igra za print : "+y);
-                    // console.log("ID Igre za print : "+y.id);
-                    // console.log("Ime Igre za print : "+y.name);
                     cartCardContainer.innerHTML += makeCartCard(y);
                 }
             }
@@ -765,7 +670,6 @@ window.onload = function(){
             var total = 0;
 
             gamesInCart.forEach(function(cartItem) {
-                // Look up full game details for price calculation
                 var fullGame = allGames.find(g => g.id == cartItem.id);
                 if (fullGame) {
                     var unitPrice = getFinalPrice(fullGame);
@@ -789,19 +693,11 @@ window.onload = function(){
         })
 
         $(document).on("click", ".ajustingQuantity p", function() {
-            // 1. Get the direction (increase or decrease) from the clicked <p>
             var action = $(this).data("quantityajustment");
-
-            // 2. Find the game card and ID
             var gameCard = $(this).closest(".cartCard");
             var gameId = gameCard.data("gameid");
-            console.log(`Action: ${action} for Game ID: ${gameId}`);
-
-            // 3. Retrieve and update cart data
             var gamesInCart = getItemFromLocalStorage("gamesInCart");
             var gameIndex = gamesInCart.findIndex(g => g.id == gameId);
-
-            // Only proceed if the game exists in the cart
             if (gameIndex !== -1) {
 
                 var gameInCart = gamesInCart[gameIndex];
@@ -813,17 +709,12 @@ window.onload = function(){
                 if (action === "decrease") {
                     gameInCart.quantity--;
                     gameCard.find(".ajustingQuantity span").text(gamesInCart[gameIndex].quantity);
-                    
-                    // FIX: Check if quantity is 0 or less to remove
                     if (gameInCart.quantity <= 0) {
-                        // Remove item
                         gamesInCart.splice(gameIndex, 1);
                         setItemToLocalStorage("gamesInCart", gamesInCart);
-                        
-                        // Fade out and remove DOM
                         gameCard.fadeOut(200, function() { 
                             $(this).remove(); 
-                            updateCartTotal(); // Update total after removal
+                            updateCartTotal();
                         });
                         
                         ajustCartContence(); 
@@ -834,8 +725,6 @@ window.onload = function(){
                     gameInCart.quantity++;
                     gameCard.find(".ajustingQuantity span").text(gamesInCart[gameIndex].quantity);
                 }
-
-                // 4. Save and Refresh
                 setItemToLocalStorage("gamesInCart", gamesInCart);
 
                 gameCard.find(".ajustingQuantity span").text(gameInCart.quantity);
@@ -844,36 +733,22 @@ window.onload = function(){
                 gameCard.find(".price").text("$" + newGameTotal.toFixed(2));
 
                 updateCartTotal();
-                
-                // Assuming these functions re-render the cart UI
                 ajustCartContence();
             }
         });
 
-        console.log("Ključevi");
-        //Prikaz količina ključeva
-
         function getGameQuantity(gameId, storageKey = "gamesInCart") {
             const rawData = localStorage.getItem(storageKey);
             if (!rawData) return 0;
-
-            // Parse the JSON array
             const cartArray = JSON.parse(rawData);
             
-            // Ensure it's an array before searching
-            if (!Array.isArray(cartArray)) {
-                console.warn("Expected an array in localStorage for", storageKey);
-                return 0;
-            }
-
-            // Find the item where the ID matches (handling string vs number)
             const gameEntry = cartArray.find(item => String(item.id) === String(gameId));
 
             return gameEntry.quantity;
         }
 
 
-        function makeCartCard(game){console.log("Ulazi u makeCartCard");
+        function makeCartCard(game){
 
             var gamesInCart = getItemFromLocalStorage("gamesInCart");
             var gameInCart = gamesInCart.find(cartGame => cartGame.id == game.id);
@@ -914,8 +789,6 @@ window.onload = function(){
 
         }
 
-        //PRODUCT PAGE
-
         $(document).on("click", ".shopCard img , .most-played a , .relatedGame img , .trending img , .results-container a", function() {
 
             var selectedGame;
@@ -929,7 +802,6 @@ window.onload = function(){
                 selectedGame = $(this).closest(".shopCard");
             }
             var gameId = selectedGame.data("gameid");
-            console.log("selectedGame je : " + selectedGame);
 
             setItemToLocalStorage("selectedGame", gameId);
             
@@ -973,7 +845,7 @@ window.onload = function(){
 
             var showHideCounter = 0;
 
-            $("#showMoreInfo").on("click",function(){console.log("radi")
+            $("#showMoreInfo").on("click",function(){
 
                 if(showHideCounter % 2){
                     $("#description-long").removeClass("expanded");
@@ -1004,28 +876,19 @@ window.onload = function(){
             const currentGenres = currentGame.genre;
             const similarGames = [];
 
-            // Filter games: must share at least one genre AND must NOT be the current game
             for (let candidate of allGames) {
-                // Skip the current game itself
                 if (candidate.id == currentGame.id) continue;
-
-                // Check for intersection of genres
                 const hasCommonGenre = candidate.genre.some(g => currentGenres.includes(g));
 
                 if (hasCommonGenre) {
                     similarGames.push(candidate);
                 }
             }
-
-            // Shuffle the array to get random results
             for (let i = similarGames.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [similarGames[i], similarGames[j]] = [similarGames[j], similarGames[i]];
             }
-
-            // Take the first 5
             const randomSimilarGames = similarGames.slice(0, 6);
-            console.log("randomSimilarGames : "+randomSimilarGames.length);
 
             for(let similarGame of randomSimilarGames){
                 makeSimilarGame(similarGame);
@@ -1048,22 +911,14 @@ window.onload = function(){
             `;
             $("#similarGamesProduct-Detail").append(html);
         }
-        
-        /////////////Obrada Forme
-
         $(document).ready(function() {
             $("#contact-form").on("submit", function(e) {
-                e.preventDefault(); // Stop default submission to handle validation first
-
-                // 1. Clear previous errors
+                e.preventDefault();
                 $("#formResult").addClass("invisible");
                 $("#formResult").html("");
                 let errors = [];
-
-                // 2. Helper to get value safely
                 const getValue = (id) => $(id).val().trim();
 
-                // 3. Validation Logic
                 var objName = getValue("#name-contact");
                 var objSurname = getValue("#surname-contact");
                 var objEmail = getValue("#email-contact");
@@ -1074,7 +929,6 @@ window.onload = function(){
                 var objPaymentMethod = getValue("#paymentSelector");
                 var objCardNumber = getValue("#cardNumber-contact");
 
-                // Name & Surname checks
                 const nameRegex = /^[A-Z][a-zA-Z]*(\s+[A-Z] [a-zA-Z]*)*$/;
                 if (!objName) errors.push("Name is required.");
                 else if(!nameRegex.test(objName)){
@@ -1085,54 +939,42 @@ window.onload = function(){
                     errors.push("Each word of surname must start with a capital letter.");
                 }
 
-                // Email check (simple regex)
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!objEmail) {
                     errors.push("Email is required.");
                 } else if (!emailRegex.test(objEmail)) {
                     errors.push("Invalid email format.");
                 }
-
-                // Address & Zip checks
                 if (!objBAddress) errors.push("Billing address is required.");
                 if (!objZipCode) errors.push("Zip Code is required.");
                 else if (isNaN(parseInt(objZipCode))) errors.push("Zip Code must be a number.");
 
-                // Country check
                 if (!objCountry) errors.push("Please select a country.");
 
-                // City check (Optional based on your HTML, but good to have if address is provided)
                 if (!objCity) errors.push("City is required.");
 
                 if(!objPaymentMethod) errors.push("Please select paying method.");
 
-                const cardNumberRegex = /^\d{4}-\d{4}-\d{4}-\d{4}$/;console.log("objCardNumber : ",objCardNumber);
+                const cardNumberRegex = /^\d{4}-\d{4}-\d{4}-\d{4}$/;
                 if (!objCardNumber) {
                     errors.push("Please enter the credit card number.");
                 }else if(!cardNumberRegex.test(objCardNumber)){
                     errors.push("Credit card numbermust be in format : 1111-1111-1111-1111");
                 }
 
-                // 4. Handle Errors
                 if (errors.length > 0) {
                     const errorList = $('<ul></ul>');
                     errors.forEach(err => {
                         errorList.append(`<li>${err}</li>`);
                     });
-                    $("#formResult").removeClass("invisible");console.log("Nevalja forma");
+                    $("#formResult").removeClass("invisible");
                     $("#formResult").append(errorList);
                     
-                } else {console.log("Uspesno popunjena forma");
+                } else {
                     $("#formResult").removeClass("invisible");
                     $("#formResult").append("<p>Process Complete!</p>");
                     
                 }
             });
         });
-
-    ///////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////
-    console.log("Opet Zabo 22?");
-    ///////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////
 }
