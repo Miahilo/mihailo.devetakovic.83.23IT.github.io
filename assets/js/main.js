@@ -61,7 +61,7 @@ window.onload = function(){
                 <h4>Resources</h4>
                 <a href="docs/rss.xml"><i class="fas fa-rss"></i> RSS</a>
                 <a href="docs/sitemap.xml"><i class="fas fa-sitemap"></i> Sitemap</a>
-                <a href="docs/Dokumentacija.docx">Documentation</a>
+                <a href="docs/dokumentacija.docx">Documentation</a>
             </div>
 
         </div>`
