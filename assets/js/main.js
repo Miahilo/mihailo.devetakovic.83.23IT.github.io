@@ -119,9 +119,8 @@ window.onload = function(){
 				return false;
 			}
 		}
+		generateHeader();
 	});
-
-    generateHeader();
 
     function showToast(message, type = 'success') {
         const container = document.getElementById('toast-container');
