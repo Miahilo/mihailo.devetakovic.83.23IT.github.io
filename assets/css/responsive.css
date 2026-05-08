@@ -115,6 +115,10 @@
         margin-bottom: 50px;
     }
 
+    .footer-col{
+        min-width:0px;
+    }
+
     .author-card {
     flex-direction: row;
      }
