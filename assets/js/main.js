@@ -59,9 +59,9 @@ window.onload = function(){
             </div>
             <div class="footer-col">
                 <h4>Resources</h4>
-                <a href="/rss.xml"><i class="fas fa-rss"></i> RSS</a>
-                <a href="/sitemap.xml"><i class="fas fa-sitemap"></i> Sitemap</a>
-                <a href="/Dokumentacija.docx">Documentation</a>
+                <a href="docs/rss.xml"><i class="fas fa-rss"></i> RSS</a>
+                <a href="docs/sitemap.xml"><i class="fas fa-sitemap"></i> Sitemap</a>
+                <a href="docs/Dokumentacija.docx">Documentation</a>
             </div>
 
         </div>`
