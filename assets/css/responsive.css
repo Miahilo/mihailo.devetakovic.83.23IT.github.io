@@ -1,4 +1,239 @@
-@media screen and (max-width:1600px){
+@media screen and (max-width:1400px){
+    
+    .most-played .item{
+       height:350px !important;
+    }
+
+    #shop-box .trending-items{
+        width: 30% !important;
+    }
+
+    #gameSelection {
+        gap:25px;
+        justify-content: center;
+    }
+
+    #gameSelection .item {
+    margin-bottom: 20px;
+    }
+
+    #shop-box {
+    max-width: 900px;
+    }
+
+}
+
+@media screen and (max-width:1200px){
+    
+    .most-played .item{
+       height:262px;
+    }
+
+    #shop-box .item .down-content h4 {
+        font-size: 14px;
+    }
+
+    #shop-box .item .down-content {
+    padding: 15px;
+    }
+
+    #similarGamesProduct-Detail .col-lg{
+        width:30%;
+    }
+
+    .relatedGame{
+        width:33%;
+    }
+    #shop-box {
+        max-width: 825px;
+    }
+
+    .search-input {
+        top: 15%;
+        right: 10px;
+    }
+
+}
+@media screen and (max-width:1010px){
+    .shopCard {
+        width: 45%px;
+    }
+
+    /* #gameSelection .item {
+    min-height: 545px;
+    } */
+
+    #gameSelection .item .down-content a {
+        width: 70%;
+        right: 15%;
+    }
+
+    .most-played .item {
+        height: 90% !important;
+    }
+}
+@media screen and (max-width:991px){
+    
+    .most-played .item{
+       height:480px;
+    }
+
+    .most-played .item .down-content{
+        height:30%;
+    }
+
+    .relatedGame{
+        width:48%;
+    }
+
+    #gameSelection .item .down-content a{
+        font-size: 13px;
+    }
+
+    #cartMain {
+        flex-direction: column-reverse;
+    }
+
+    #cartButtons {
+        width: 90%;
+        margin-top: 35px
+    }
+
+    #gamesInCart {
+        width: 95%;
+    }
+
+    .cartCard{
+        flex-direction: column;
+    }
+
+    .cartCard > div{
+        width:100%;
+    }
+
+    .cartCardInfo {
+    padding: 35px;
+}
+
+}
+
+@media screen and (max-width:991px){
+    
+    .footer-container .footer-col:first-child > *{
+        display: block;
+        margin-bottom: 50px;
+    }
+
+    .footer-col{
+        min-width:0px;
+    }
+
+    .author-card {
+    flex-direction: row;
+     }
+   }
+
+
+
+
+@media (max-width: 768px) {
+    .footer-col{
+        min-width: 0px;
+    }
+
+    .most-played .item{
+       height:395px;
+    }
+
+    .relatedGame{
+        width:99%;
+    }
+
+    #shop {
+        flex-direction:column;
+    }
+
+    #shop-filtering{
+        width:100%;
+    }
+    #sort-box{
+        max-width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 45px;
+        justify-content: space-around;
+    }
+    #sort-box .checkbox-row {
+        width: 23%;
+    }
+
+    .author-name {
+      font-size: 2rem;
+    }
+            
+    .author-content {
+     padding: 30px;
+    }
+            
+    .author-stats {
+    	gap: 20px;
+    }
+
+    .trending .col-lg-3{
+        width:50%;
+    }
+
+    .trending .item , .most-played .col-lg , .categories .col-lg{
+        min-height: 90% !important;
+    }
+}
+
+@media screen and (max-width:595px){
+    .footer-container{
+        flex-direction: column;
+    }
+
+    .footer-col{
+        align-items: center !important;
+    }
+
+    .shopCard {
+        width: 150px;
+    }
+}
+
+@media screen and (max-width:575px){
+    
+    .most-played .item {
+        height: 750px;
+    }
+
+    .most-played {
+    border-radius: 80px;
+    }
+
+    .related-games{
+        width : 90%;
+        margin : 0px auto;
+    }
+
+    #sort-box {
+        justify-content: space-between;
+    }
+    
+    #sort-box .checkbox-row {
+        width: 32%;
+    }
+
+    .most-played .col-lg , .categories .col-lg{
+        width: 45% !important;
+    }
+}
+@media screen and (max-width:400px){
+    .shopCard {
+        width: 150px;
+    }
+}@media screen and (max-width:1600px){
 
 }
 @media screen and (max-width:1400px){
