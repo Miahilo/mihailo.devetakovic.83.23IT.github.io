@@ -754,7 +754,12 @@ window.onload = function(){
                     }
                     }
                     else if (action === "increase") {
-                    gameInCart.quantity++;
+                        if(gameInCart.quantity >= 5){console.log("ima ih vec 5");
+                            showToast("You can't purchase more than 5 keys!","error");
+                            gameInCart.quantity = 5;
+                        }else{
+                            gameInCart.quantity++;
+                        }
                     gameCard.find(".ajustingQuantity span").text(gamesInCart[gameIndex].quantity);
                 }
                 setItemToLocalStorage("gamesInCart", gamesInCart);
