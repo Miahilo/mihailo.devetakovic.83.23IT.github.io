@@ -68,7 +68,7 @@
     }
 
     .most-played .item {
-        height: 600px !important;
+        height: 90% !important;
     }
 }
 @media screen and (max-width:991px){
